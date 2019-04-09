@@ -109,7 +109,7 @@ AUCpreD v1.04 [Oct-01-2018]
     Predict order/disorder regions using sequence or profile information
 
 USAGE:  ./AUCpreD.sh <-i input_fasta | input_tgt> [-o out_root]
-                     [-t threshold] [-k keep_file] [-H home]
+                     [-t threshold] [-k keep_file] [-l real_label] [-H home]
 
 Options:
 
@@ -123,14 +123,14 @@ Options:
                   where XXXX is the input name, and MODE is profile or noprof.
                   [default = './' ]
 
--t threshold   :  threshold to determine disordered residue.
-                  [default: 0.2 for sequence mode, and 0.25 for profile mode]
+-t threshold   :  threshold to determine disordered residue. [default = 0.5]
 
 -k keep_file   :  keep the intermediate files if its value is 1 [default = 0]
 
 -l real_label  :  real Order/Disorder label file, in three lines [default = null]
 
--H home        :  home directory of AUCpreD.sh [default = ~/GitBucket/Predict_Property]
+-H home        :  home directory of AUCpreD.sh
+                  [default = ~/GitBucket/Predict_Property]
 
 
 
