@@ -135,7 +135,7 @@ Options:
 #------------ PDBTM_Topology_Pred ------------#
 
 PDBTM_Topology_Pred v1.05 [Mar-05-2019]
-    Predict PDBTM Topology labels given a protein sequence
+    Predict PDBTM Topology labels using sequence or profile information
 
 USAGE:  ./PDBTM_Topology_Pred.sh <-i input_fasta | input_tgt> [-o out_root]
                   [-t threshold] [-k keep_file] [-l real_label] [-H home]

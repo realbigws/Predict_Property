@@ -5,7 +5,7 @@
 usage()
 {
 	echo "PDBTM_Topology_Pred v1.05 [Mar-05-2019] "
-	echo "    Predict PDBTM Topology labels given a protein sequence "
+	echo "    Predict PDBTM Topology labels using sequence or profile information "
 	echo ""
 	echo "USAGE:  ./PDBTM_Topology_Pred.sh <-i input_fasta | input_tgt> [-o out_root] "
 	echo "                  [-t threshold] [-k keep_file] [-l real_label] [-H home]"
