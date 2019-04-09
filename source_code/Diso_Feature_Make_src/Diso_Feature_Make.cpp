@@ -172,7 +172,7 @@ int Load_LAB_File(string &cn_file,vector <int> &lab_number)
 //		exit(-1);
 //	}
 	//skip
-	for(int i=0;i<2;i++)
+	for(int i=0;i<3;i++)
 	{
 		if(!getline(fin,buf,'\n'))
 		{

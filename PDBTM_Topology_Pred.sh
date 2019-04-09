@@ -97,6 +97,7 @@ do
 	esac
 done
 
+
 # ------ judge fasta or tgt -------- #
 filename=`basename $input`
 extension=${filename##*.}

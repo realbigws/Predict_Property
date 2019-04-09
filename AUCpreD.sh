@@ -8,7 +8,7 @@ usage()
 	echo "    Predict order/disorder regions using sequence or profile information"
 	echo ""
 	echo "USAGE:  ./AUCpreD.sh <-i input_fasta | input_tgt> [-o out_root] "
-	echo "                     [-t threshold] [-k keep_file] [-H home] "
+	echo "                     [-t threshold] [-k keep_file] [-l real_label] [-H home] "
 	echo ""
 	echo "Options:"
 	echo ""
@@ -25,6 +25,8 @@ usage()
 	echo "-t threshold   :  threshold to determine disordered residue. [default = 0.5]"
 	echo ""
 	echo "-k keep_file   :  keep the intermediate files if its value is 1 [default = 0]"
+	echo ""
+	echo "-l real_label  :  real Order/Disorder label file, in three lines [default = null]"
 	echo ""
 	echo "-H home        :  home directory of AUCpreD.sh "
 	echo "                  [default = `dirname $0`]"
@@ -49,6 +51,7 @@ input=""
 input_fasta=""
 input_tgt=""
 amino_only=0
+label_file=""
 out_root="./"   #-> output to current directory
 #-> optional arguments
 threshold=""
@@ -57,8 +60,9 @@ threshold_pro=0.5
 Keep_file=0
 home=`dirname $0`         #-> home directory
 
+
 #-> parse arguments
-while getopts ":i:o:t:k:H:" opt;
+while getopts ":i:o:t:k:l:H:" opt;
 do
 	case $opt in
 	#-> required arguments
@@ -74,6 +78,9 @@ do
 		;;
 	k)
 		Keep_file=$OPTARG
+		;;
+	l)
+		label_file=$OPTARG
 		;;
 	H)
 		home=$OPTARG
@@ -219,7 +226,12 @@ do
 			break
 		fi
 		# ----- generate feature ----- #
-		$home/$util/Diso_Feature_Make $tmp/$relnam.tgt $tmp/$relnam.ss8 $tmp/$relnam.acc -1 > $tmp/$relnam.feat_profile
+		if [ "$label_file" == "" ]
+		then
+			$home/$util/Diso_Feature_Make $tmp/$relnam.tgt $tmp/$relnam.ss8 $tmp/$relnam.acc -1 > $tmp/$relnam.feat_profile
+		else
+			$home/$util/Diso_Feature_Make $tmp/$relnam.tgt $tmp/$relnam.ss8 $tmp/$relnam.acc $label_file > $tmp/$relnam.feat_profile
+		fi
 		OUT=$?
 		if [ $OUT -ne 0 ]
 		then
@@ -239,7 +251,12 @@ do
 		$home/util/runxxxpred_single.sh $tmp/$relnam.seq $tmp $home 1> $tmp/$relnam.ws1 2> $tmp/$relnam.ws2
 		rm -f $tmp/$relnam.ss $tmp/$relnam.horiz $tmp/$relnam.ws1 $tmp/$relnam.ws2
 		# ----- generate feature ----- #
-		$home/$util/Diso_Feature_Make_noprof $tmp/$relnam.seq $tmp/$relnam.ss2 $tmp/$relnam.solv -1 > $tmp/$relnam.feat_noprof
+		if [ "$label_file" == "" ]
+		then
+			$home/$util/Diso_Feature_Make_noprof $tmp/$relnam.seq $tmp/$relnam.ss2 $tmp/$relnam.solv -1 > $tmp/$relnam.feat_noprof
+		else
+			$home/$util/Diso_Feature_Make_noprof $tmp/$relnam.seq $tmp/$relnam.ss2 $tmp/$relnam.solv $label_file > $tmp/$relnam.feat_noprof
+		fi
 		OUT=$?
 		if [ $OUT -ne 0 ]
 		then
