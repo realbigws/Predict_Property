@@ -301,7 +301,6 @@ do
 	# ------ final copy ------ #
 	cp $tmp/$outnam $out_root/$relnam.diso_prev
 
-
 	# ---------- transform the raw result into DisoPred format ------ #
 	$home/$util/DisoPred_Trans $tmp/$relnam.seq $tmp/$outnam $threshold $amino_only > $out_root/$outnam
 
