@@ -6,6 +6,9 @@ Predict_Property standalone package
 Title:
 Predict_Property: a Standalone Package for Protein Structure Property Prediction
 
+Abstract:
+This package predicts Secondary Structure Element (SS3 and SS8), Solvent Accessibility (ACC), Order/Disorder prediction (DISO), and TransMembrane topology (TM2 and TM8) for the input protein using either pure sequence information or evolutionary profile information. 
+
 Author: 
 Sheng Wang
 
