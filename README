@@ -176,7 +176,7 @@ Example:
 
 
 #-> 2. AUCpreD
-./AUCpreD.sh -i example/1pazA.tgt
+./AUCpreD.sh -i example/T0530.tgt
 
 
 #-> 3. PDBTM_Topology_Pred
