@@ -4,7 +4,7 @@ Predict_Property standalone package
 ===================================
 
 Title:
-RaptorX-Property: a Standalone Package for Protein Structure Property Prediction
+Predict_Property: a Standalone Package for Protein Structure Property Prediction
 
 Author: 
 Sheng Wang
@@ -69,10 +69,11 @@ Usage:
 
 #----------- Predict_Property --------------#
 
-Predict_Property v1.01 [Oct-01-2018]
+Predict_Property v1.02 [Mar-05-2019]
     Predict protein local properties using sequence or profile information
 
-USAGE:  ./Predict_Property.sh <-i input_fasta | input_tgt> [-o out_root] [-H home]
+USAGE:  ./Predict_Property.sh <-i input_fasta | input_tgt> [-o out_root]
+                              [-t diso_thres] [-T topo_thres] [-H home]
 
 Options:
 
@@ -85,8 +86,12 @@ Options:
 -o out_root    :  default output would the current directory.
                   [default = './${input_name}_PROP']
 
+-t diso_thres  :  threshold to determine disordered residue. [default = 0.5]
+
+-T topo_thres  :  threshold to determine transmembrane residue. [default = 0.5]
+
 -H home        :  home directory of Predict_Property.sh
-                  [default ~/GitBucket/Predict_Property]
+                  [default = ~/GitBucket/Predict_Property]
 
 
 
@@ -121,11 +126,11 @@ Options:
 
 #------------ PDBTM_Topology_Pred ------------#
 
-PDBTM_Topology_Pred v1.05 [Oct-01-2018]
-    Predict 9-state PDBTM Topology labels given a protein sequence
+PDBTM_Topology_Pred v1.05 [Mar-05-2019]
+    Predict PDBTM Topology labels given a protein sequence
 
 USAGE:  ./PDBTM_Topology_Pred.sh <-i input_fasta | input_tgt> [-o out_root]
-                           [-k keep_file] [-l real_label] [-H home]
+                  [-t threshold] [-k keep_file] [-l real_label] [-H home]
 
 Options:
 
@@ -139,6 +144,8 @@ Options:
                   where XXXX is the input name, and MODE is profile or noprof.
                   we also output XXXX.topo_simp for simplified result.
                   [default = './' ]
+
+-t threshold   :  threshold to determine transmembrane residue. [default = 0.5]
 
 -k keep_file   :  keep the intermediate files if its value is 1 [default = 0]
 
@@ -175,7 +182,7 @@ Output files:
 1. overall detailed results:
 	SeqID.all
 
-e.g., file 'T0530.all' in tmp/T0530/ folder. This file contains all the detail prediction results for Secondary Structure Element (SS3 and SS8), Solvent Accessibility (ACC), and Order/Disorder prediction (DISO)
+e.g., file 'T0530.all' in tmp/T0530/ folder. This file contains all the detail prediction results for Secondary Structure Element (SS3 and SS8), Solvent Accessibility (ACC), Order/Disorder prediction (DISO), and TransMembrane topology (TM2 and TM8).
 
 ------------------
 
@@ -183,6 +190,8 @@ e.g., file 'T0530.all' in tmp/T0530/ folder. This file contains all the detail p
 	SeqID.ss3
 	SeqID.ss8
 	SeqID.acc
+	SeqID.tm2
+	SeqID.tm8
 	SeqID.diso
 
 These files contain the detail prediction results in the form of probability.
@@ -193,6 +202,8 @@ These files contain the detail prediction results in the form of probability.
 	SeqID.ss3_simp
 	SeqID.ss8_simp
 	SeqID.acc_simp
+	SeqID.tm2_simp
+	SeqID.tm8_simp
 	SeqID.diso_simp
 
 These files contain the simple prediction results in one line.
