@@ -1,0 +1,177 @@
+===================================
+Predict_Property standalone package
+(v1.01) 2018.10.01 
+===================================
+
+Title:
+RaptorX-Property: a Standalone Package for Protein Structure Property Prediction
+
+Author: 
+Sheng Wang
+
+Email:
+realbigws@gmail.com
+
+Publication:
+RaptorX-Property: a Web Server for Protein Structure Property Prediction
+    Sheng Wang#, Wei Li, Shiwang Liu, Jinbo Xu
+                                            Nucleic Acids Research, 2016
+
+
+========
+Install:
+========
+
+1. download the package
+git clone git@bitbucket.org:realbigws/predict_property.git
+
+mv predict_property Predict_Property
+cd Predict_Property
+
+--------------
+
+2. compile
+
+cd source_code/
+	make
+cd ../
+
+
+
+======
+Usage:
+======
+
+
+#----------- Predict_Property --------------#
+
+Predict_Property v1.01 [Oct-01-2018]
+    Predict protein local properties using sequence or profile information
+
+USAGE:  ./Predict_Property.sh <-i input_fasta | input_tgt> [-o out_root] [-H home]
+
+Options:
+
+***** required arguments *****
+-i input_fasta :  input protein sequence file in FASTA format
+(or)
+-i input_tgt   :  input protein profile file in TGT format
+
+***** optional arguments *****
+-o out_root    :  default output would the current directory.
+                  [default = './${input_name}_PROP']
+
+-H home        :  home directory of Predict_Property.sh
+                  [default ~/GitBucket/Predict_Property]
+
+
+
+#------------ AUCpreD -----------------------#
+
+AUCpreD v1.04 [Oct-01-2018]
+    Predict order/disorder regions using sequence or profile information
+
+USAGE:  ./AUCpreD.sh <-i input_fasta | input_tgt> [-o out_root]
+                     [-t threshold] [-k keep_file] [-H home]
+
+Options:
+
+***** required arguments *****
+-i input_fasta :  input protein sequence file in FASTA format
+(or)
+-i input_tgt   :  input protein profile file in TGT format
+
+***** optional arguments *****
+-o out_root    :  default output would be XXXX.diso_MODE at the current directory,
+                  where XXXX is the input name, and MODE is profile or noprof.
+                  [default = './' ]
+
+-t threshold   :  threshold to determine disordered residue.
+                  [default: 0.2 for sequence mode, and 0.25 for profile mode]
+
+-k keep_file   :  keep the intermediate files if its value is 1 [default = 0]
+
+-H home        :  home directory of AUCpreD.sh [default = ~/GitBucket/Predict_Property]
+
+
+
+#------------ PDBTM_Topology_Pred ------------#
+
+PDBTM_Topology_Pred v1.05 [Oct-01-2018]
+    Predict 9-state PDBTM Topology labels given a protein sequence
+
+USAGE:  ./PDBTM_Topology_Pred.sh <-i input_fasta | input_tgt> [-o out_root]
+                           [-k keep_file] [-l real_label] [-H home]
+
+Options:
+
+***** required arguments *****
+-i input_fasta :  input protein sequence file in FASTA format
+(or)
+-i input_tgt   :  input protein profile file in TGT format
+
+***** optional arguments *****
+-o out_root    :  default output would be XXXX.topo_MODE at the current directory,
+                  where XXXX is the input name, and MODE is profile or noprof.
+                  we also output XXXX.topo_simp for simplified result.
+                  [default = './' ]
+
+-k keep_file   :  keep the intermediate files if its value is 1 [default = 0]
+
+-l real_label  :  real PDBTM Topology label file, in  three lines [default = null]
+
+-H home        :  home directory of PDBTM_Topology_Pred.sh
+                  [default = ~/GitBucket/Predict_Property]
+
+
+
+
+========
+Example:
+========
+
+#-> 1. Predict_Property
+./Predict_Property.sh -i example/1pazA.tgt -H
+
+
+#-> 2. AUCpreD
+./AUCpreD.sh -i example/1pazA.tgt
+
+
+#-> 3. PDBTM_Topology_Pred
+./PDBTM_Topology_Pred.sh -i example/1bhaA.tgt
+
+
+
+
+=============
+Output files:
+=============
+
+1. overall detailed results:
+	SeqID.all
+
+e.g., file 'T0530.all' in tmp/T0530/ folder. This file contains all the detail prediction results for Secondary Structure Element (SS3 and SS8), Solvent Accessibility (ACC), and Order/Disorder prediction (DISO)
+
+------------------
+
+2. detailed results in separate files:
+	SeqID.ss3
+	SeqID.ss8
+	SeqID.acc
+	SeqID.diso
+
+These files contain the detail prediction results in the form of probability.
+
+------------------
+
+3. simple results in separate files:
+	SeqID.ss3_simp
+	SeqID.ss8_simp
+	SeqID.acc_simp
+	SeqID.diso_simp
+
+These files contain the simple prediction results in one line.
+
+------------------
+
