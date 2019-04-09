@@ -12,10 +12,37 @@ Sheng Wang
 Email:
 realbigws@gmail.com
 
+
+
+============
 Publication:
+============
+
+[1]
 RaptorX-Property: a Web Server for Protein Structure Property Prediction
-    Sheng Wang#, Wei Li, Shiwang Liu, Jinbo Xu
+       Sheng Wang#*, Wei Li*, Shiwang Liu, Jinbo Xu#
                                             Nucleic Acids Research, 2016
+
+[2]
+Protein Secondary Structure Prediction Using Deep Convolutional Neural Fields
+       Sheng Wang#, Jian Peng, Jianzhu Ma, Jinbo Xu#
+                                            Scientific Reports, 2016
+
+[3]
+AUCpreD: Proteome-level Protein Disorder Prediction by AUC-maximized Deep Convolutional Neural Fields
+       Sheng Wang#, Jianzhu Ma, Jinbo Xu#
+                                            ECCB, 2016
+                                            Bioinformatics, 2016
+
+[4]
+AUC-maximized Deep Convolutional Neural Fields for Protein Sequence Labeling
+       Sheng Wang, Siqi Sun, Jinbo Xu#
+                                            ECML/PKDD, 2016
+
+[5]
+PredMP: a web server for de novo prediction and visualization of membrane proteins
+       Sheng Wang#, Shiyang Fei, Zongan Wang, Yu Li, Jinbo Xu, Feng Zhao#, Xin Gao#
+                                            Bioinformatics, 2018
 
 
 ========
@@ -23,10 +50,7 @@ Install:
 ========
 
 1. download the package
-git clone git@bitbucket.org:realbigws/predict_property.git
-
-mv predict_property Predict_Property
-cd Predict_Property
+git clone https://github.com/realbigws/Predict_Property
 
 --------------
 
@@ -131,7 +155,7 @@ Example:
 ========
 
 #-> 1. Predict_Property
-./Predict_Property.sh -i example/1pazA.tgt -H
+./Predict_Property.sh -i example/1pazA.tgt
 
 
 #-> 2. AUCpreD
