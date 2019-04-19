@@ -171,7 +171,6 @@ fi
 home=`readlink -f $home`
 
 # ------ check output directory ------#
-out_root=`readlink -f $out_root`
 mkdir -p $out_root
 out_root=`readlink -f $out_root`
 
